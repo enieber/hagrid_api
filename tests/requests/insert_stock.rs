@@ -1,29 +1,28 @@
 use hagrid_api::app::App;
 use loco_rs::testing;
 use serial_test::serial;
+use super::prepare_data;
 
 #[tokio::test]
 #[serial]
-async fn can_get_echo() {
-    testing::request::<App, _, _>(|request, _ctx| async move {
+async fn can_insert_new_stock() {
+    
+    testing::request::<App, _, _>(|request, ctx| async move {
+        let user = prepare_data::init_user_login(&request, &ctx).await;
+
+        let (auth_key, auth_value) = prepare_data::auth_header(&user.token);
+
         let payload = serde_json::json!({
-            "foo": "bar",
+            "value": 1,
+            "item_id": 1,
         });
 
-        let res = request.post("/insert_stock/echo").json(&payload).await;
+        let res = request.post("/api/insert_stocks")
+            .add_header(auth_key, auth_value)
+            .json(&payload)
+            .await;
         assert_eq!(res.status_code(), 200);
-        assert_eq!(res.text(), serde_json::to_string(&payload).unwrap());
     })
     .await;
 }
 
-#[tokio::test]
-#[serial]
-async fn can_request_root() {
-    testing::request::<App, _, _>(|request, _ctx| async move {
-        let res = request.get("/insert_stock").await;
-        assert_eq!(res.status_code(), 200);
-        assert_eq!(res.text(), "hello");
-    })
-    .await;
-}
