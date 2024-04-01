@@ -26,6 +26,8 @@ pub enum Relation {
         on_delete = "Cascade"
     )]
     Classifications,
+    #[sea_orm(has_many = "super::insert_stocks::Entity")]
+    InsertStocks,
     #[sea_orm(
         belongs_to = "super::roles::Entity",
         from = "Column::RoleId",
@@ -39,6 +41,12 @@ pub enum Relation {
 impl Related<super::classifications::Entity> for Entity {
     fn to() -> RelationDef {
         Relation::Classifications.def()
+    }
+}
+
+impl Related<super::insert_stocks::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::InsertStocks.def()
     }
 }
 

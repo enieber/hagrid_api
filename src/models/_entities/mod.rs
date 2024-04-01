@@ -3,6 +3,7 @@
 pub mod prelude;
 
 pub mod classifications;
+pub mod insert_stocks;
 pub mod items;
 pub mod notes;
 pub mod roles;
