@@ -10,13 +10,13 @@ use crate::models::_entities::roles::{ActiveModel, Entity, Model};
 pub struct Params {
     pub code: Option<String>,
     pub name: Option<String>,
-    }
+}
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.code = Set(self.code.clone());
-      item.name = Set(self.name.clone());
-      }
+        item.code = Set(self.code.clone());
+        item.name = Set(self.name.clone());
+    }
 }
 
 async fn load_item(ctx: &AppContext, id: i32) -> Result<Model> {

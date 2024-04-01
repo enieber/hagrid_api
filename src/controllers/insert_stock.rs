@@ -1,10 +1,10 @@
 #![allow(clippy::missing_errors_doc)]
 #![allow(clippy::unnecessary_struct_initialization)]
 #![allow(clippy::unused_async)]
+use crate::models::_entities::insert_stocks::{ActiveModel, Entity, Model};
+use crate::{models::_entities::users, views::user::CurrentResponse};
 use loco_rs::prelude::*;
 use serde::{Deserialize, Serialize};
-use crate::{models::_entities::users, views::user::CurrentResponse};
-use crate::models::_entities::insert_stocks::{ActiveModel, Entity, Model};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Params {
@@ -14,8 +14,8 @@ pub struct Params {
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.value = Set(self.value.clone());
-      item.item_id = Set(self.item_id.clone());
+        item.value = Set(self.value.clone());
+        item.item_id = Set(self.item_id.clone());
     }
 }
 
@@ -31,7 +31,7 @@ pub async fn list(State(ctx): State<AppContext>) -> Result<Json<Vec<Model>>> {
 pub async fn add(
     auth: auth::JWT,
     State(ctx): State<AppContext>,
-    Json(params): Json<Params>
+    Json(params): Json<Params>,
 ) -> Result<Json<Model>> {
     let _current_user = crate::models::users::Model::find_by_pid(&ctx.db, &auth.claims.pid).await?;
     let user_id = &_current_user.id;

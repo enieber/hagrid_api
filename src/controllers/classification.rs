@@ -9,12 +9,12 @@ use crate::models::_entities::classifications::{ActiveModel, Entity, Model};
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Params {
     pub name: Option<String>,
-    }
+}
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.name = Set(self.name.clone());
-      }
+        item.name = Set(self.name.clone());
+    }
 }
 
 async fn load_item(ctx: &AppContext, id: i32) -> Result<Model> {

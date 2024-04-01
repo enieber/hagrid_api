@@ -10,7 +10,10 @@ async fn can_create_items() {
             "name": "bacia",
         });
 
-        let res_class = request.post("/api/classifications").json(&classification).await;
+        let res_class = request
+            .post("/api/classifications")
+            .json(&classification)
+            .await;
         println!("classification_id: {}", res_class.text());
         let roles = serde_json::json!({
             "name": "Code_128",
@@ -31,4 +34,3 @@ async fn can_create_items() {
     })
     .await;
 }
-

@@ -15,4 +15,3 @@ async fn can_create_role() {
     })
     .await;
 }
-

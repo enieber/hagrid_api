@@ -28,7 +28,4 @@ enum Classifications {
     Table,
     Id,
     Name,
-    
 }
-
-

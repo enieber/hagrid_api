@@ -48,9 +48,7 @@ enum InsertStocks {
     ItemId,
     Value,
     UserId,
-    
 }
-
 
 #[derive(DeriveIden)]
 enum Items {

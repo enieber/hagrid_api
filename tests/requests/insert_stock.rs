@@ -1,12 +1,11 @@
+use super::prepare_data;
 use hagrid_api::app::App;
 use loco_rs::testing;
 use serial_test::serial;
-use super::prepare_data;
 
 #[tokio::test]
 #[serial]
 async fn can_insert_new_stock() {
-    
     testing::request::<App, _, _>(|request, ctx| async move {
         let user = prepare_data::init_user_login(&request, &ctx).await;
 
@@ -17,7 +16,8 @@ async fn can_insert_new_stock() {
             "item_id": 1,
         });
 
-        let res = request.post("/api/insert_stocks")
+        let res = request
+            .post("/api/insert_stocks")
             .add_header(auth_key, auth_value)
             .json(&payload)
             .await;
@@ -25,4 +25,3 @@ async fn can_insert_new_stock() {
     })
     .await;
 }
-

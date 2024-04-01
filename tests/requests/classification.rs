@@ -15,5 +15,3 @@ async fn can_create_classification() {
     })
     .await;
 }
-
-

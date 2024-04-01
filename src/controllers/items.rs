@@ -16,10 +16,10 @@ pub struct Params {
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.code = Set(self.code.clone());
-      item.validity_date = Set(self.validity_date.clone());
-      item.role_id = Set(self.role_id.clone());
-      item.classification_id = Set(self.classification_id.clone());
+        item.code = Set(self.code.clone());
+        item.validity_date = Set(self.validity_date.clone());
+        item.role_id = Set(self.role_id.clone());
+        item.classification_id = Set(self.classification_id.clone());
     }
 }
 

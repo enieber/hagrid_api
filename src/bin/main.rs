@@ -1,5 +1,5 @@
-use loco_rs::cli;
 use hagrid_api::app::App;
+use loco_rs::cli;
 use migration::Migrator;
 
 #[tokio::main]

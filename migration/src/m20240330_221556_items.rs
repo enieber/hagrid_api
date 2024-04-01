@@ -50,9 +50,7 @@ enum Items {
     RoleId,
     ClassificationId,
     ValidityDate,
-    
 }
-
 
 #[derive(DeriveIden)]
 enum Roles {

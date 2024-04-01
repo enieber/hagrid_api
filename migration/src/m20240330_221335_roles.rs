@@ -30,7 +30,4 @@ enum Roles {
     Id,
     Code,
     Name,
-    
 }
-
-
